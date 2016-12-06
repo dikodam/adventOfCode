@@ -35,6 +35,7 @@ public class Main extends Application {
 
     private TextField tfInput;
     private TextField tfOutput;
+    private TextField tfDoubles;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -55,8 +56,9 @@ public class Main extends Application {
 
         tfInput = new TextField();
         tfOutput = new TextField();
+        tfDoubles = new TextField();
 
-        layout.getChildren().addAll(tfInput, btnGo, tfOutput);
+        layout.getChildren().addAll(tfInput, btnGo, tfOutput, tfDoubles);
 
 //        StackPane root = new StackPane();
 //        root.getChildren().add(layout);
@@ -77,6 +79,11 @@ public class Main extends Application {
         // TODO befehle iterieren und ausführen
         commands.forEach((index, command) -> position.execute(command));
         tfOutput.setText(String.format("distance: %d", position.getDistance()));
+        if (position.hasDoubleVisitedPositions()) {
+            tfDoubles.setText(String.format("erste doppelt besuchte Position: %d, %d", position.getFirstPositionVisitedTwice().getKey(), position.getFirstPositionVisitedTwice().getValue()));
+        } else {
+            tfDoubles.setText("keine doppelt besuchte Position vorhanden!");
+        }
     }
 
     private void chooseFile() {
