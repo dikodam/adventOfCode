@@ -11,14 +11,13 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 
 public class Main extends Application {
 
-    private Map<Integer, Befehl> befehlsammlung;
+    private Map<Integer, Befehl> befehlssammlung;
 
     public static void main(String[] args) {
         launch(args);
@@ -64,7 +63,7 @@ public class Main extends Application {
     }
 
     private void parseTf() {
-        befehlsammlung = new HashMap<>();
+        befehlssammlung = new HashMap<>();
         if (file != null) {
             StringBuffer buffer = new StringBuffer("");
             try (BufferedReader br = new BufferedReader(new FileReader(file))) {
@@ -79,9 +78,9 @@ public class Main extends Application {
 
             String[] befehle = buffer.toString().split(", ");
             for (int i = 0; i < befehle.length; i++) {
-                Richtung richtung = Richtung.parseMove(befehle[i].substring(0, 1));
+                Drehrichtung himmelsrichtung = Drehrichtung.parseMove(befehle[i].substring(0, 1));
                 int schritte = Integer.parseInt(befehle[i].substring(1));
-                befehlsammlung.put(i, new Befehl(richtung, schritte));
+                befehlssammlung.put(i, new Befehl(himmelsrichtung, schritte));
             }
         }
     }

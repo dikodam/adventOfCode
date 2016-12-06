@@ -4,11 +4,19 @@ package com.adiko;
  * Created by adiko on 06.12.2016.
  */
 public class Befehl {
-    Richtung richtung;
-    int schritte;
+    private Drehrichtung drehrichtung;
+    private int schritte;
 
-    public Befehl(Richtung richtung, int schritte) {
-        this.richtung = richtung;
+    public Befehl(Drehrichtung drehrichtung, int schritte) {
+        this.drehrichtung = drehrichtung;
         this.schritte = schritte;
+    }
+
+    public int getSchritte() {
+        return schritte;
+    }
+
+    public Drehrichtung getDrehrichtung() {
+        return drehrichtung;
     }
 }
